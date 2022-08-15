@@ -1,14 +1,16 @@
 {
-  "name": "navbar-element",
+  "name": "@profcomff/navbar-element",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "lint": "vue-cli-service lint",
+    "serve:standalone": "vue-cli-service serve --mode standalone"
   },
   "dependencies": {
     "core-js": "^3.6.5",
+    "single-spa-vue": "^2.1.0",
     "vue": "^3.0.0"
   },
   "devDependencies": {
@@ -18,7 +20,8 @@
     "@vue/compiler-sfc": "^3.0.0",
     "babel-eslint": "^10.1.0",
     "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0"
+    "eslint-plugin-vue": "^7.0.0",
+    "vue-cli-plugin-single-spa": "~3.3.0"
   },
   "eslintConfig": {
     "root": true,
