@@ -1,8 +1,18 @@
 <template>
-  <ul role="navigation" class="navbar">
-    <li><a @click="navigate('/timetable')">Расписание</a></li>
-    <li><a @click="navigate('/about')">Информация</a></li>
-    <li><a @click="navigate('/settings')">Настройки</a></li>
+  <ul role="navigation" class="nav-bar">
+    <li
+      class="nav-button"
+      v-for="b in buttons"
+      :key="b.path"
+      @click="navigate(b.path)"
+    >
+      <span
+        class="nav-icon material-symbols-sharp"
+        v-if="b.icon.font !== undefined"
+        v-text="b.icon.font"
+      />
+      <span class="nav-title" v-text="b.name" />
+    </li>
   </ul>
 </template>
 
@@ -11,83 +21,129 @@ import * as singleSpa from "single-spa";
 
 export default {
   name: "navbar",
+  data() {
+    return {
+      buttons: [
+        {
+          icon: { font: "calendar_month" },
+          name: "Расписание",
+          path: "/timetable",
+        },
+        {
+          icon: { font: "apps" },
+          name: "Сервисы",
+          path: "/services",
+        },
+        {
+          icon: { font: "settings" },
+          name: "Настройки",
+          path: "/settings",
+        },
+      ],
+    };
+  },
   methods: {
     navigate(addr) {
       singleSpa.navigateToUrl(addr);
     },
   },
+  async beforeMount() {
+    try {
+      try {
+        let res = await fetch("https://navbar.api.profcomff.com/navbar");
+        this.buttons = await res.json();
+        console.debug("Using online menu set");
+      } catch (err) {
+        this.buttons = JSON.parse(localStorage.getItem("navbar-buttons"));
+        console.debug(err);
+        console.debug("Using cached menu set");
+      }
+    } catch (err) {
+      console.debug(err);
+      console.debug("Using default menu set");
+    } finally {
+      console.debug("Caching menu set");
+      localStorage.setItem("navbar-buttons", JSON.stringify(this.buttons));
+    }
+  },
 };
 </script>
 
 <style>
-.navbar {
-  background-color: #fff;
+@import url(https://fonts.googleapis.com/css2?family=Material+Symbols+Sharp:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200);
+
+.material-symbols-sharp {
+  font-variation-settings: "FILL" 1, "wght" 700, "GRAD" 200, "opsz" 48;
+}
+
+.nav-bar {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 16px;
+  background-color: #548ab1;
   overflow: hidden;
   position: fixed;
   padding: 0;
   margin: 0;
 }
 
-.navbar > li {
+.nav-bar .nav-button {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
   list-style-type: none;
-  padding: 0;
-}
-
-.navbar > li > a {
-  display: block;
   color: #f2f2f2;
   text-align: center;
-  padding: 14px 16px;
+  min-width: 80px;
+  max-width: 168px;
+  width: 100%;
+  height: 56px;
+}
+
+.nav-bar .nav-button .active.icon {
+  border-radius: 10px;
+  color: blue;
+}
+
+.nav-bar .nav-title {
+  display: block;
   text-decoration: none;
-  text-transform: uppercase;
   font-size: 12px;
 }
 
-.navbar li:hover {
-  background-color: #ddd;
-  color: black;
-}
-
-/* Add a color to the active/current link */
-.navbar a.active {
-  background-color: #04aa6d;
-  color: white;
-}
-
 @media (orientation: portrait) {
-  .navbar {
-    display: flex;
+  .nav-bar {
     flex-direction: row;
-    flex-wrap: nowrap;
     justify-content: space-around;
     bottom: 0;
     width: 100%;
-    box-shadow: 0 -10px 7px #f2f2f2;
+    box-shadow: 0 -10px 2px #548ab1;
   }
 
-  .navbar > li > a {
+  .nav-bar > li > a {
     float: left;
   }
 }
 
 @media (orientation: landscape) {
   body {
-    margin-left: 200px;
+    margin-left: 156px;
   }
 
-  .navbar {
-    display: flex;
+  .nav-bar::before { content: "";}
+
+  .nav-bar {
     flex-direction: column;
-    flex-wrap: nowrap;
     align-items: flex-start;
     justify-content: normal;
+    align-content: center;
     left: 0;
     width: 150px;
     height: 100%;
-    box-shadow: 10px 0 7px #f2f2f2;
+    box-shadow: 10px 0 2px #548ab1;
   }
 
-  .navbar > li > a {
+  .nav-bar > li > a {
     float: top;
   }
 }
