@@ -111,7 +111,6 @@ export default {
   font-size: 12px;
 }
 
-/* @media (orientation: portrait) { */
 .nav-bar {
   flex-direction: row;
   justify-content: space-around;
@@ -123,28 +122,4 @@ export default {
 .nav-bar > li > a {
   float: left;
 }
-/* } */
-
-/* @media (orientation: landscape) {
-  body {
-    margin-left: 156px;
-  }
-
-  .nav-bar::before { content: "";}
-
-  .nav-bar {
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: normal;
-    align-content: center;
-    left: 0;
-    width: 150px;
-    height: 100%;
-    box-shadow: 10px 0 2px #548ab1;
-  }
-
-  .nav-bar > li > a {
-    float: top;
-  }
-} */
 </style>
