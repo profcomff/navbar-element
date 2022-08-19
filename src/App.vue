@@ -111,21 +111,21 @@ export default {
   font-size: 12px;
 }
 
-@media (orientation: portrait) {
-  .nav-bar {
-    flex-direction: row;
-    justify-content: space-around;
-    bottom: 0;
-    width: 100%;
-    box-shadow: 0 -10px 2px #548ab1;
-  }
-
-  .nav-bar > li > a {
-    float: left;
-  }
+/* @media (orientation: portrait) { */
+.nav-bar {
+  flex-direction: row;
+  justify-content: space-around;
+  bottom: 0;
+  width: 100%;
+  box-shadow: 0 -10px 2px #548ab1;
 }
 
-@media (orientation: landscape) {
+.nav-bar > li > a {
+  float: left;
+}
+/* } */
+
+/* @media (orientation: landscape) {
   body {
     margin-left: 156px;
   }
@@ -146,5 +146,5 @@ export default {
   .nav-bar > li > a {
     float: top;
   }
-}
+} */
 </style>
