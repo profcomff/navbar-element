@@ -1,9 +1,9 @@
 FROM node:16 AS build
 WORKDIR /app
-ADD ./package.json ./package-lock.json /app/
-RUN npm install
+ADD ./package.json yarn.lock /app/
+RUN corepack enable && yarn install --frozen-lockfile --link-duplicates
 ADD . /app
-RUN npm run build
+RUN yarn run build
 
 FROM nginx:1.21
 ADD ./default.conf /etc/nginx/conf.d/default.conf
