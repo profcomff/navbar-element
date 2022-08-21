@@ -15,7 +15,9 @@ const vueLifecycles = singleSpaVue({
     },
   },
   handleInstance(app) {
-    app.use(BalmUI);
+    app.use(BalmUI, {
+      type: 4,  // 'sharp'
+    });
     app.use(BalmUIPlus);
     app.use(BalmUINext, {});
   }
