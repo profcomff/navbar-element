@@ -16,7 +16,7 @@
 
 <script>
 export default {
-  name: "navbar",
+  name: "navbar-bottom",
   data() {
     return {
       items: [
