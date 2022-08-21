@@ -9,6 +9,7 @@
     "serve:standalone": "vue-cli-service serve --mode standalone"
   },
   "dependencies": {
+    "balm-ui": "^10.10.0",
     "core-js": "^3.6.5",
     "single-spa-vue": "^2.1.0",
     "vue": "^3.0.0"
