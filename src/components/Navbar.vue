@@ -1,22 +1,30 @@
 <template>
-  <div class="container">
-    <ui-navigation-bar content-selector="main" stacked>
-      <ui-tabs
-        v-model="active"
-        type="textWithIcon"
-        :items="buttons"
-        stacked
-        @update:model-value="onChange"
-      ></ui-tabs>
-    </ui-navigation-bar>
-  </div>
+  <navbar-mobile :buttons="buttons" :active="active" @navigate="(i) => {active = i}" v-if="isMobile()" />
+  <navbar-desktop :buttons="buttons" :active="active" @navigate="(i) => {active = i}" v-else />
 </template>
 
 <script>
 import * as singleSpa from "single-spa";
+import NavbarMobile from "./NavbarMobile.vue";
+import NavbarDesktop from "./NavbarDesktop.vue";
 
 export default {
-  name: "navbar-bottom",
+  components: { NavbarMobile, NavbarDesktop },
+  name: "navbar-component",
+  methods: {
+    isMobile() {
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        )
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  },
+
   data() {
     return {
       buttons: [
@@ -36,17 +44,18 @@ export default {
           path: "/settings",
         },
       ],
-      active: 0,
+      active: -1,
     };
   },
-  methods: {
-    onChange(active) {
-      let button = this.buttons[active]
+  watch: {
+    active: function () {
+      let button = this.buttons[this.active];
       console.log(button);
       singleSpa.navigateToUrl(button.path);
     },
   },
   async beforeMount() {
+    // Подгружаем навбар в кэш
     try {
       try {
         let res = await fetch("https://navbar.api.profcomff.com/navbar");
@@ -64,9 +73,17 @@ export default {
       console.debug("Caching menu set");
       localStorage.setItem("navbar-buttons", JSON.stringify(this.buttons));
     }
+
+    // Выбираем какая кнопка сейчас активная
+    this.buttons.forEach((element, index) => {
+      if (element.path == window.location.pathname) {
+        this.active = index;
+        return;
+      }
+    });
   },
 };
 </script>
 
-<style lang="scss">
+<style>
 </style>

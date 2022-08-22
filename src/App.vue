@@ -1,18 +1,13 @@
 <template>
-  <div>
-    <navbar-top />
-    <navbar-bottom />
-  </div>
+  <navbar-component />
 </template>
 
 <script>
-import NavbarBottom from "@/components/Navbar";
-import NavbarTop from "@/components/Appbar";
+import NavbarComponent from "@/components/Navbar";
 
 export default {
   components: {
-    NavbarBottom,
-    NavbarTop,
+    NavbarComponent,
   },
 };
 </script>
