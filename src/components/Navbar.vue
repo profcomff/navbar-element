@@ -52,6 +52,7 @@ export default {
       let button = this.buttons[this.active];
       console.log(button);
       singleSpa.navigateToUrl(button.path);
+      this.$emit('route', button.path);
     },
   },
   async beforeMount() {
