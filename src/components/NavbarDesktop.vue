@@ -50,7 +50,7 @@ export default {
   width: 340px;
   position: fixed;
   left: 0;
-  top: 0;
+  top: 56px;
   bottom: 0;
 }
 
