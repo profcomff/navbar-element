@@ -1,5 +1,10 @@
 <template>
-  <div>{{ info.text }}</div>
+  <div>
+    <a :href="info.path">
+      <img :src="info.icon.src" alt="info.text" />
+      {{ info.text }}
+    </a>
+  </div>
 </template>
 
 <script>

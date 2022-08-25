@@ -2,7 +2,7 @@
   <div>
     <navbar-component @route="path_change" />
     <appbar-component v-if="show_appbar" />
-    <app-menu></app-menu>
+    <app-menu v-if="show_appmenu"></app-menu>
   </div>
 </template>
 
@@ -25,7 +25,7 @@ export default {
   methods: {
     path_change(to) {
       this.show_appbar = to.includes("/timetable") ? false : true;
-      this.show_appbar = to.includes("/apps") ? true : false;
+      this.show_appmenu = to.includes("/apps") ? true : false;
     },
   },
   beforeMount() {

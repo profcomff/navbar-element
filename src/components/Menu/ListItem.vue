@@ -1,5 +1,10 @@
 <template>
-  <div>{{ info.text }}</div>
+  <div>
+    <a :href="info.path">
+      <span class="material-symbols-sharp">{{ info.icon }}</span>
+      {{ info.text }}
+    </a>
+  </div>
 </template>
 
 <script>
