@@ -65,6 +65,13 @@ export default {
   pointer-events: none;
   fill: currentColor;
 }
+.button-navbar{
+  color: var(--bs-primary);
+}
+.button-navbar:active{
+  color: white;
+  background-color: var(--bs-primary);
+}
 .dropdown-toggle {
   outline: 0;
 }
