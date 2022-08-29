@@ -59,7 +59,7 @@ export default {
     // Подгружаем навбар в кэш
     try {
       try {
-        let res = await fetch("https://navbar.api.profcomff.com/navbar");
+        let res = await fetch(`${process.env.VUE_APP_API_NAVBAR}/navbar`);
         this.buttons = await res.json();
         console.debug("Using online menu set");
       } catch (err) {
