@@ -11,7 +11,7 @@
         text-decoration-none
       "
     >
-      <img class="header-img fs-4" src="/icon-512x512.png" />
+      <img class="header-img fs-4" :src="logoItem" />
     </a>
     <hr />
     <ul class="nav nav-pills flex-column mb-auto">
@@ -42,7 +42,13 @@ export default {
   async beforeMount() {
     document.getElementsByTagName("body")[0].style.marginLeft = "340px";
   },
+  computed:{
+    logoItem(){
+      return `${process.env.VUE_APP_CDN}/app/logo/icon_512x512.png`;
+    }
+  }
 };
+
 </script>
 
 <style scoped>
