@@ -1,10 +1,8 @@
 <template>
-  <div>
-    <a :href="info.path">
+    <a :href="info.path" target="_blank">
       <img :src="info.icon.src" alt="info.text" />
       {{ info.text }}
     </a>
-  </div>
 </template>
 
 <script>
@@ -16,5 +14,31 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
+  a{
+    align-self: flex-start;
+    flex-grow: 1;
+    flex-shrink: 1;
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    text-align: center;
+    text-decoration: none;
+    font-size: 0.9em;
+    font-weight: 600;
+    color: black;
+    padding: 10px 5px;
+    width: 25%;
+    gap:2px;
+
+  }
+  img{
+    border: 1px solid gray;
+    border-radius: 25%;
+    box-shadow: 1px 1px lightgray;
+    padding: 10%;
+    width: 90%;
+    height: auto;
+  }
 </style>
