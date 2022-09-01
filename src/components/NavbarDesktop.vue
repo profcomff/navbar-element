@@ -44,7 +44,7 @@ export default {
   },
   computed:{
     logoItem(){
-      return `${process.env.VUE_APP_CDN}/app/logo/icon_512x512.png`;
+      return `${process.env.VUE_APP_CDN}/app/logo/logo_ff.svg`;
     }
   }
 };
