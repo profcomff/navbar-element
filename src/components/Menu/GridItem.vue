@@ -40,6 +40,6 @@ export default {
     box-shadow: 1px 1px lightgray;
     padding: 10%;
     width: 90%;
-    height: auto;
+    height: min-content;
   }
 </style>

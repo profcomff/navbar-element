@@ -11,7 +11,7 @@
         text-decoration-none
       "
     >
-      <img class="header-img fs-4" src="/icon-512x512.png" />
+      <img class="header-img fs-4" :src="logoItem" />
     </a>
     <hr />
     <ul class="nav nav-pills flex-column mb-auto">
@@ -42,7 +42,13 @@ export default {
   async beforeMount() {
     document.getElementsByTagName("body")[0].style.marginLeft = "340px";
   },
+  computed:{
+    logoItem(){
+      return `${process.env.VUE_APP_CDN}/app/logo/icon_512x512.png`;
+    }
+  }
 };
+
 </script>
 
 <style scoped>
@@ -65,12 +71,18 @@ export default {
   pointer-events: none;
   fill: currentColor;
 }
-.button-navbar{
+.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+  background-color: var(--bs-primary);
+  color: var(--bs-on-primary);
+}
+
+.nav-link, .nav-link:hover,.nav-link:focus {
   color: var(--bs-primary);
 }
-.button-navbar:active{
-  color: white;
-  background-color: var(--bs-primary);
+
+.nav-link:hover, .nav-link:focus {
+  border-radius: var(--bs-nav-pills-border-radius);
+  opacity: 0.6;
 }
 .dropdown-toggle {
   outline: 0;

@@ -4,6 +4,7 @@
       <grid-view v-if="(category.type == 'grid3')" :info="category" />
       <list-view v-else-if="(category.type == 'list')" :info="category" />
     </div>
+    <img :src="kitten" />
   </div>
 </template>
 
@@ -22,10 +23,11 @@ export default {
       buttons: [],
     }
   },
+  
   async beforeMount() {
     try {
       try {
-        let res = await fetch("https://navbar.api.profcomff.com/apps");
+        let res = await fetch(`${process.env.VUE_APP_API_NAVBAR}/apps`);
         this.buttons = await res.json();
         console.debug("Using online menu set");
       } catch (err) {
@@ -41,15 +43,24 @@ export default {
       localStorage.setItem("navbar-buttons", JSON.stringify(this.buttons));
     }
   },
+  computed:{
+    kitten(){
+      return `${process.env.VUE_APP_CDN}/app/menu_icons/kitty.svg`;
+    },
+  },
 };
 </script>
 
 <style scoped>
   .container{
-    padding: 66px 10px;
+    padding: 66px 10px 56px;
     display: flex;
     flex-direction: column;
     gap: 10px;
     max-width: 600px;
+  }
+  img{
+    align-self: flex-end;
+    width: 3em;
   }
 </style>
