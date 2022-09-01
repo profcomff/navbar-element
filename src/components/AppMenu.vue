@@ -1,5 +1,5 @@
 <template>
-  <div class="container">
+  <div class="container" v-bind:style="{ paddingBottom : (isMobile() ? '56px' : '0px')}">
     <div class="category" v-for="category in buttons" :key="category.name">
       <grid-view v-if="(category.type == 'grid3')" :info="category" />
       <list-view v-else-if="(category.type == 'list')" :info="category" />
@@ -48,12 +48,25 @@ export default {
       return `${process.env.VUE_APP_CDN}/app/menu_icons/kitty.svg`;
     },
   },
+  methods:{
+    isMobile() {
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        )
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
+  }
 };
 </script>
 
 <style scoped>
   .container{
-    padding: 66px 10px 56px;
+    padding: 66px 10px;
     display: flex;
     flex-direction: column;
     gap: 10px;
