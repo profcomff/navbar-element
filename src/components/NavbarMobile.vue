@@ -71,6 +71,7 @@ export default {
   text-decoration: none;
   -webkit-text-decoration: var(--typography-button-text-decoration, none);
   text-decoration: var(--typography-button-text-decoration, none);
+  color: var(--bs-secondary);
 }
 .tab .tab--text-label {
   color: rgba(var(--bs-on-primary), 0.6);

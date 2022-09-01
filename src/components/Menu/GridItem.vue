@@ -30,6 +30,7 @@ export default {
     color: black;
     padding: 10px 5px;
     width: 25%;
+    height: min-content;
     gap:2px;
 
   }
@@ -39,6 +40,6 @@ export default {
     box-shadow: 1px 1px lightgray;
     padding: 10%;
     width: 90%;
-    height: auto;
+    height: min-content;
   }
 </style>
