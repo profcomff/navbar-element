@@ -1,2 +1,2 @@
 run:
-	yarn run serve
+	yarn start

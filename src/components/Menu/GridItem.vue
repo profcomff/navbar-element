@@ -30,6 +30,7 @@ export default {
     color: black;
     padding: 10px 5px;
     width: 25%;
+    height: min-content;
     gap:2px;
 
   }
