@@ -31,5 +31,5 @@ a{
     background-color: #f2f2f2;
     border-radius: 5px;
   }
-  
+
 </style>

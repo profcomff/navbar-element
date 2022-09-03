@@ -2,7 +2,12 @@
   <div>
     <h2>{{ info.name }}</h2>
     <div class="services">
-      <grid-item v-for="b in info.items" :key="b.path" :info="b"></grid-item>
+      <grid-item
+        v-for="b in info.items"
+        :key="b.path"
+        :info="b"
+        @click.capture="$emit('navigate', b.path)"
+      ></grid-item>
     </div>
   </div>
 </template>

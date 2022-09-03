@@ -4,8 +4,16 @@
     v-bind:style="{ paddingBottom: mobile ? '56px' : '0px' }"
   >
     <div class="category" v-for="category in buttons" :key="category.name">
-      <grid-view v-if="category.type == 'grid3'" :info="category" />
-      <list-view v-else-if="category.type == 'list'" :info="category" />
+      <grid-view
+        v-if="category.type == 'grid3'"
+        :info="category"
+        @navigate="route"
+      />
+      <list-view
+        v-else-if="category.type == 'list'"
+        :info="category"
+        @navigate="route"
+      />
     </div>
     <img :src="kitten" />
   </div>
@@ -34,17 +42,12 @@ export default {
       try {
         let res = await fetch(`${process.env.VUE_APP_API_NAVBAR}/apps`);
         this.buttons = await res.json();
-        console.debug("Using online menu set");
       } catch (err) {
         this.buttons = JSON.parse(localStorage.getItem("navbar-buttons"));
-        console.debug(err);
-        console.debug("Using cached menu set");
       }
     } catch (err) {
-      console.debug(err);
-      console.debug("Using default menu set");
+      console.log(err);
     } finally {
-      console.debug("Caching menu set");
       localStorage.setItem("navbar-buttons", JSON.stringify(this.buttons));
     }
   },
@@ -53,7 +56,11 @@ export default {
       return `${process.env.VUE_APP_CDN}/app/menu_icons/kitty.svg`;
     },
   },
-  methods: {},
+  methods: {
+    route(to) {
+      this.$emit("route", window.location.pathname, to);
+    },
+  },
 };
 </script>
 

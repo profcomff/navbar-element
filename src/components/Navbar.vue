@@ -36,7 +36,7 @@ export default {
     };
   },
   props: {
-    mobile: Boolean
+    mobile: Boolean,
   },
   watch: {
     active: function () {
@@ -58,17 +58,13 @@ export default {
       try {
         let res = await fetch(`${process.env.VUE_APP_API_NAVBAR}/navbar`);
         this.buttons = await res.json();
-        console.debug("Using online menu set");
       } catch (err) {
         this.buttons = JSON.parse(localStorage.getItem("navbar-buttons"));
         console.debug(err);
-        console.debug("Using cached menu set");
       }
     } catch (err) {
       console.debug(err);
-      console.debug("Using default menu set");
     } finally {
-      console.debug("Caching menu set");
       localStorage.setItem("navbar-buttons", JSON.stringify(this.buttons));
     }
 

@@ -1,8 +1,8 @@
 <template>
   <div>
-    <navbar-component @route="path_change" :mobile="isMobile" />
-    <appbar-component v-if="show_appbar" :mobile="isMobile" />
-    <app-menu v-if="show_appmenu" :mobile="isMobile"></app-menu>
+    <navbar-component @route="path_change" :mobile="isMobile()" />
+    <appbar-component v-if="show_appbar" :mobile="isMobile()" />
+    <app-menu @route="capture_navigation" v-if="show_appmenu" :mobile="isMobile()"></app-menu>
   </div>
 </template>
 
@@ -34,7 +34,8 @@ export default {
         return false;
       }
     },
-    path_change(to) {
+    capture_navigation(from, to) {
+      if (from === to) return;
       try {
         fetch(`${process.env.VUE_APP_API_MARKETING}/action`, {
           method: "POST",
@@ -44,13 +45,16 @@ export default {
           body: JSON.stringify({
             user_id: localStorage.getItem("marketing-id"),
             action: "route to",
-            path_from: window.location.pathname,
+            path_from: from,
             path_to: to,
           }),
         });
       } catch {
         // Failed, skips
       }
+    },
+    path_change(to) {
+      this.capture_navigation(window.location.pathname, to);
       this.show_appbar = to.includes("/timetable") ? false : true;
       this.show_appmenu = to.includes("/apps") ? true : false;
     },
