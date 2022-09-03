@@ -69,12 +69,19 @@ export default {
     }
 
     // Выбираем какая кнопка сейчас активная
-    this.buttons.forEach((element, index) => {
-      if (element.path == window.location.pathname) {
-        this.active = index;
-        return;
-      }
-    });
+    if (
+      (window.location.pathname === "") |
+      (window.location.pathname === "/")
+    ) {
+      this.active = 1;
+    } else {
+      this.buttons.forEach((element, index) => {
+        if (window.location.pathname.startsWith(element.path)) {
+          this.active = index;
+          return;
+        }
+      });
+    }
   },
 };
 </script>
