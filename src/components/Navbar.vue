@@ -27,23 +27,7 @@ export default {
 
   data() {
     return {
-      buttons: [
-        {
-          icon: "calendar_month",
-          text: "Расписание",
-          path: "/timetable",
-        },
-        {
-          icon: "apps",
-          text: "Сервисы",
-          path: "/apps",
-        },
-        {
-          icon: "settings",
-          text: "Настройки",
-          path: "/settings",
-        },
-      ],
+      buttons: [],
       active: -1,
     };
   },
