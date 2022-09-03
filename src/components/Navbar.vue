@@ -1,6 +1,24 @@
 <template>
-  <navbar-mobile :buttons="buttons" :active="active" @navigate="(i) => {active = i}" v-if="isMobile()" />
-  <navbar-desktop :buttons="buttons" :active="active" @navigate="(i) => {active = i}" v-else />
+  <navbar-mobile
+    :buttons="buttons"
+    :active="active"
+    @navigate="
+      (i) => {
+        active = i;
+      }
+    "
+    v-if="isMobile()"
+  />
+  <navbar-desktop
+    :buttons="buttons"
+    :active="active"
+    @navigate="
+      (i) => {
+        active = i;
+      }
+    "
+    v-else
+  />
 </template>
 
 <script>
@@ -36,10 +54,17 @@ export default {
       let button = this.buttons[this.active];
       console.log(button);
       singleSpa.navigateToUrl(button.path);
-      this.$emit('route', button.path);
+      this.$emit("route", button.path);
     },
   },
   async beforeMount() {
+    try {
+      // Пытаемся быстро загрузить из кэша
+      let cached = localStorage.getItem("navbar-buttons");
+      if (cached) this.buttons = JSON.parse(cached);
+    } catch {
+      // No cache, pass
+    }
     // Подгружаем навбар в кэш
     try {
       try {
