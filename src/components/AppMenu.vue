@@ -1,8 +1,11 @@
 <template>
-  <div class="container" v-bind:style="{ paddingBottom : (isMobile() ? '56px' : '0px')}">
+  <div
+    class="container"
+    v-bind:style="{ paddingBottom: mobile ? '56px' : '0px' }"
+  >
     <div class="category" v-for="category in buttons" :key="category.name">
-      <grid-view v-if="(category.type == 'grid3')" :info="category" />
-      <list-view v-else-if="(category.type == 'list')" :info="category" />
+      <grid-view v-if="category.type == 'grid3'" :info="category" />
+      <list-view v-else-if="category.type == 'list'" :info="category" />
     </div>
     <img :src="kitten" />
   </div>
@@ -21,9 +24,11 @@ export default {
   data() {
     return {
       buttons: [],
-    }
+    };
   },
-  
+  props: {
+    mobile: Boolean,
+  },
   async beforeMount() {
     try {
       try {
@@ -43,37 +48,25 @@ export default {
       localStorage.setItem("navbar-buttons", JSON.stringify(this.buttons));
     }
   },
-  computed:{
-    kitten(){
+  computed: {
+    kitten() {
       return `${process.env.VUE_APP_CDN}/app/menu_icons/kitty.svg`;
     },
   },
-  methods:{
-    isMobile() {
-      if (
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-          navigator.userAgent
-        )
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-  }
+  methods: {},
 };
 </script>
 
 <style scoped>
-  .container{
-    padding: 66px 10px;
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    max-width: 600px;
-  }
-  img{
-    align-self: flex-end;
-    width: 3em;
-  }
+.container {
+  padding: 66px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  max-width: 600px;
+}
+img {
+  align-self: flex-end;
+  width: 3em;
+}
 </style>

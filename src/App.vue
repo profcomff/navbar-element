@@ -1,8 +1,8 @@
 <template>
   <div>
-    <navbar-component @route="path_change" />
-    <appbar-component v-if="show_appbar" />
-    <app-menu v-if="show_appmenu"></app-menu>
+    <navbar-component @route="path_change" :mobile="isMobile" />
+    <appbar-component v-if="show_appbar" :mobile="isMobile" />
+    <app-menu v-if="show_appmenu" :mobile="isMobile"></app-menu>
   </div>
 </template>
 
@@ -15,7 +15,7 @@ export default {
   components: {
     NavbarComponent,
     AppbarComponent,
-    AppMenu
+    AppMenu,
   },
   data() {
     return {
@@ -23,13 +23,40 @@ export default {
     };
   },
   methods: {
+    isMobile() {
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        )
+      ) {
+        return true;
+      } else {
+        return false;
+      }
+    },
     path_change(to) {
+      try {
+        fetch(`${process.env.VUE_APP_API_MARKETING}/action`, {
+          method: "POST",
+          cache: "no-cache",
+          redirect: "follow",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            user_id: localStorage.getItem("marketing-id"),
+            action: "route to",
+            path_from: window.location.pathname,
+            path_to: to,
+          }),
+        });
+      } catch {
+        // Failed, skips
+      }
       this.show_appbar = to.includes("/timetable") ? false : true;
       this.show_appmenu = to.includes("/apps") ? true : false;
     },
   },
   beforeMount() {
     this.path_change(window.location.pathname);
-  }
+  },
 };
 </script>

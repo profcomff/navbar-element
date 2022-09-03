@@ -7,7 +7,7 @@
         active = i;
       }
     "
-    v-if="isMobile()"
+    v-if="mobile"
   />
   <navbar-desktop
     :buttons="buttons"
@@ -29,32 +29,20 @@ import NavbarDesktop from "./NavbarDesktop.vue";
 export default {
   components: { NavbarMobile, NavbarDesktop },
   name: "navbar-component",
-  methods: {
-    isMobile() {
-      if (
-        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
-          navigator.userAgent
-        )
-      ) {
-        return true;
-      } else {
-        return false;
-      }
-    },
-  },
-
   data() {
     return {
       buttons: [],
       active: -1,
     };
   },
+  props: {
+    mobile: Boolean
+  },
   watch: {
     active: function () {
       let button = this.buttons[this.active];
-      console.log(button);
-      singleSpa.navigateToUrl(button.path);
       this.$emit("route", button.path);
+      singleSpa.navigateToUrl(button.path);
     },
   },
   async beforeMount() {
