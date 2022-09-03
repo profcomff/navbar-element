@@ -71,14 +71,14 @@ export default {
   text-decoration: none;
   -webkit-text-decoration: var(--typography-button-text-decoration, none);
   text-decoration: var(--typography-button-text-decoration, none);
-  color: var(--bs-secondary);
+  color: var(--bs-on-primary);
 }
 .tab .tab--text-label {
-  color: rgba(var(--bs-on-primary), 0.6);
+  color: rgba(var(--bs-secondary), 0.6);
 }
 .tab .tab--icon {
   fill: currentColor;
-  color: rgba(var(--bs-on-primary), 0.54);
+  color: rgba(var(--bs-secondary), 0.54);
 }
 .tab--content {
   position: relative;
@@ -90,7 +90,7 @@ export default {
 }
 .tab--active .tab--icon,
 .tab--active .tab--text-label {
-  color: var(--bs-on-primary);
+  color: var(--bs-secondary);
 }
 .tab--active .tab--icon {
   fill: currentColor;
@@ -193,7 +193,7 @@ export default {
 }
 .tab .tab--ripple:after,
 .tab .tab--ripple:before {
-  background-color: var(--bs-on-primary);
+  background-color: var(--bs-secondary);
 }
 .tab:hover .tab--ripple:before {
   opacity: 0.04;
@@ -220,8 +220,11 @@ export default {
 .tab--stacked {
   height: 56px;
 }
+.tab-indicator {
+  color: var(--bs-secondary);
+}
 .tab-indicator .tab-indicator--content--underline {
-  background-color: var(--bs-on-primary);
+  background-color: var(--bs-secondary);
 }
 .tab-indicator .tab-indicator--content--underline {
   border-top-width: 2px;
