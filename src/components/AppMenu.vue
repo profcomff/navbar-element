@@ -1,5 +1,8 @@
 <template>
-  <div
+  <div v-if="!this.loaded" class='timetable'>
+    <div class="lds-dual-ring"></div>
+  </div>
+  <div v-else
     class="container"
     v-bind:style="{ paddingBottom: mobile ? '56px' : '0px' }"
   >
@@ -32,6 +35,7 @@ export default {
   data() {
     return {
       buttons: [],
+      loaded: false,
     };
   },
   props: {
@@ -50,6 +54,7 @@ export default {
     } finally {
       localStorage.setItem("navbar-buttons", JSON.stringify(this.buttons));
     }
+    this.loaded = true;
   },
   computed: {
     kitten() {
@@ -71,6 +76,16 @@ export default {
   flex-direction: column;
   gap: 10px;
   max-width: 600px;
+}
+.timetable {
+  padding: 10px;
+  padding-top: 66px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 56px);
+  width: auto;
 }
 img {
   align-self: flex-end;
