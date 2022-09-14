@@ -1,21 +1,21 @@
 <template>
   <div>
-    <navbar-component @route="path_change" :mobile="isMobile()" />
-    <appbar-component v-if="show_appbar" :mobile="isMobile()" />
-    <app-menu @route="capture_navigation" v-if="show_appmenu" :mobile="isMobile()"></app-menu>
+    <navbar-component :mobile="isMobile()" />
+    <!-- <appbar-component v-if="show_appbar" :mobile="isMobile()" /> -->
+    <!-- <app-menu @route="capture_navigation" v-if="show_appmenu" :mobile="isMobile()"></app-menu> -->
   </div>
 </template>
 
 <script>
 import NavbarComponent from "@/components/Navbar";
-import AppbarComponent from "@/components/Appbar";
-import AppMenu from "@/components/AppMenu";
+// import AppbarComponent from "@/components/Appbar";
+// import AppMenu from "@/components/AppMenu";
 
 export default {
   components: {
     NavbarComponent,
-    AppbarComponent,
-    AppMenu,
+    // AppbarComponent,
+    // AppMenu,
   },
   data() {
     return {

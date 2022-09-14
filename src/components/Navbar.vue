@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import * as singleSpa from "single-spa";
+// import * as singleSpa from "single-spa";
 import NavbarMobile from "./NavbarMobile.vue";
 import NavbarDesktop from "./NavbarDesktop.vue";
 
@@ -41,8 +41,7 @@ export default {
   watch: {
     active: function () {
       let button = this.buttons[this.active];
-      this.$emit("route", button.path);
-      singleSpa.navigateToUrl(button.path);
+      this.$router.push(button.path);
     },
   },
   async beforeMount() {
@@ -82,6 +81,7 @@ export default {
         }
       });
     }
+    console.log("Buttons: ",this.buttons)
   },
 };
 </script>
