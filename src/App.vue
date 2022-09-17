@@ -1,22 +1,18 @@
 <template>
   <div>
-    <navbar-component :mobile="isMobile()" />
-    <!-- <appbar-component v-if="show_appbar" :mobile="isMobile()" /> -->
-    <!-- <app-menu @route="capture_navigation" v-if="show_appmenu" :mobile="isMobile()"></app-menu> -->
+    <navbar-top  />
+    <navbar-main :mobile="isMobile()" />
   </div>
 </template>
 
 <script>
-import NavbarComponent from "@/components/Navbar";
-// import AppbarComponent from "@/components/Appbar";
-// import AppMenu from "@/components/AppMenu";
-
+import NavbarMain from "./components/NavbarMain.vue";
+import NavbarTop from "./components/NavbarTop.vue";
 export default {
   components: {
-    NavbarComponent,
-    // AppbarComponent,
-    // AppMenu,
-  },
+    NavbarTop,
+    NavbarMain
+},
   data() {
     return {
       show_appbar: false,
@@ -53,14 +49,8 @@ export default {
         // Failed, skips
       }
     },
-    path_change(to) {
-      this.capture_navigation(window.location.pathname, to);
-      this.show_appbar = to.includes("/timetable") ? false : true;
-      this.show_appmenu = to.includes("/apps") ? true : false;
-    },
   },
   beforeMount() {
-    this.path_change(window.location.pathname);
   },
 };
 </script>
