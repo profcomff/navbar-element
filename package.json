@@ -9,11 +9,14 @@
     "serve:standalone": "vue-cli-service serve --mode standalone"
   },
   "dependencies": {
+    "click-outside-vue3": "4.0.1",
     "core-js": "^3.6.5",
     "single-spa-vue": "^2.1.0",
     "systemjs-webpack-interop": "^2.3.7",
+    "v-calendar": "^3.0.0-alpha.8",
     "vue": "^3.0.0",
-    "vue-router": "^4.1.5"
+    "vue-router": "^4.1.5",
+    "vuex": "^4.0.2"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

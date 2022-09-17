@@ -28,7 +28,7 @@ import NavbarDesktop from "./NavbarDesktop.vue";
 
 export default {
   components: { NavbarMobile, NavbarDesktop },
-  name: "navbar-component",
+  name: "navbar-main",
   data() {
     return {
       buttons: [],
