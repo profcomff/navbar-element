@@ -58,6 +58,7 @@ export default {
   left: 0;
   top: 56px;
   bottom: 0;
+  z-index: -1;
 }
 
 .header-img {
@@ -76,11 +77,11 @@ export default {
   color: var(--bs-on-primary);
 }
 
-.nav-link, .nav-link:hover,.nav-link:focus {
+.nav-link, .nav-link:hover {
   color: var(--bs-primary);
 }
 
-.nav-link:hover, .nav-link:focus {
+.nav-link:hover {
   border-radius: var(--bs-nav-pills-border-radius);
   opacity: 0.6;
 }
