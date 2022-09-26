@@ -10,9 +10,9 @@
         this.showCalendar = false;
       }
     ">
-      <button v-if="this.$store.state.page" class="btn btn-primary date options" @click="
+      <button v-if="this.pageId==1" class="btn btn-primary date options" @click="
         () => {
-          if (this.$store.state.page) showCalendar = !showCalendar;
+          showCalendar = !showCalendar;
         }
       ">
         {{ this.formatDate(this.date) }}
@@ -22,21 +22,21 @@
         <span v-else class="material-symbols-sharp"> expand_less </span>
       </button>
       <div v-else class="date">Твой ФФ!</div>
-      <div v-if="showCalendar && this.$store.state.page" class="date-nav">
+      <div v-if="showCalendar && this.pageId==1" class="date-nav">
         <DatePicker class="calendar" v-model="date" />
       </div>
     </div>
-    <button class="btn btn-primary options" @click="date = new Date()" v-bind:disabled="!this.$store.state.page">
+    <button class="btn btn-primary options" @click="date = new Date()" v-bind:disabled="!this.pageId==1">
       <span class="material-symbols-sharp"> today </span>
     </button>
     <button class="btn btn-primary options" @click="
       () => {
-        if (this.$store.state.page) showOptions = !showOptions;
+        if (this.pageId==1) showOptions = !showOptions;
       }
-    " v-bind:disabled="!this.$store.state.page">
+    " v-bind:disabled="!this.pageId==1">
       <span class="material-symbols-sharp"> more_vert </span>
     </button>
-    <div v-if="showOptions && this.$store.state.page" class="options-nav" v-click-outside="
+    <div v-if="showOptions && this.pageId==1" class="options-nav" v-click-outside="
       () => {
         this.showOptions = false;
       }
@@ -59,31 +59,44 @@ export default {
   },
   data() {
     return {
-      date: this.$store.state.date,
+      date: new Date,
       showCalendar: false,
       showOptions: false,
       pageId: 0,
     };
   },
   watch: {
-    date() {
-      if (this.date)
-        document.dispatchEvent(new CustomEvent('change-date', { detail: this.date }));
+    date: function (newDate, oldDate) {
+      if (!newDate) this.date = oldDate;
+      document.dispatchEvent(new CustomEvent('change-date', { detail: this.date }));
+      try {
+        fetch(`${process.env.VUE_APP_API_MARKETING}/action`, {
+          method: "POST",
+          cache: "no-cache",
+          redirect: "follow",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            user_id:
+              localStorage.getItem("marketing-id"),
+              action: "viewed timetable on new date",
+              path_from: '/timetable',
+              path_to: '/timetable',
+          }),
+        });
+      } catch {
+        //Failed, skips
+      }
     },
   },
   methods: {
     formatDate(date) {
-      if (!this.date) this.date = this.$store.state.date;
-      var options = {
-        month: "long",
-        day: "numeric",
-      };
-      return date.toLocaleString("ru", options);
-    },
-    resetOverlays() {
-      console.log(this.showOptions);
-      this.showCalendar = false;
-      this.showOptions = false;
+      if (this.date){
+        var options = {
+          month: "long",
+          day: "numeric",
+        };
+        return date.toLocaleString("ru", options);
+      }
     },
     toInit() {
       this.showCalendar = false;
