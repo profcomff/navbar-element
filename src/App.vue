@@ -1,7 +1,7 @@
 <template>
   <div>
     <navbar-top />
-    <navbar-main :mobile="isMobile()" @navigate="
+    <navbar-main :mobile="isMobile()" @navigate-url="
     (newPath, oldPath) => {
       capture_navigation(oldPath, newPath);
     }" />
@@ -25,9 +25,12 @@ default {
       try {
         fetch(`${process.env.VUE_APP_API_MARKETING}/action`, {
           method: "POST", cache: "no-cache", redirect: "follow",
-          headers: { "Content-Type": "application/json" }, body: JSON.stringify({
-            user_id:
-              localStorage.getItem("marketing-id"), action: "route to", path_from: from, path_to: to,
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            user_id: localStorage.getItem("marketing-id"),
+            action: "route to",
+            path_from: from,
+            path_to: to,
           }),
         });
       } catch {

@@ -39,7 +39,7 @@ export default {
   },
   watch: {
     active: function (newValue, oldValue) {
-      this.$emit("navigate", this.buttons[newValue].path, this.buttons[oldValue].path);
+      this.$emit("navigate-url", this.buttons[newValue].path, this.buttons[oldValue].path);
       this.$router.push(this.buttons[newValue].path);
     },
   },
