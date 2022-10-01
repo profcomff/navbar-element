@@ -3,15 +3,18 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "start": "vue-cli-service serve",
+    "start": "vue-cli-service serve --port 9001",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
     "serve:standalone": "vue-cli-service serve --mode standalone"
   },
   "dependencies": {
+    "click-outside-vue3": "4.0.1",
     "core-js": "^3.6.5",
     "single-spa-vue": "^2.1.0",
-    "vue": "^3.0.0"
+    "v-calendar": "^3.0.0-alpha.8",
+    "vue": "^3.0.0",
+    "vue-router": "^4.1.5"
   },
   "devDependencies": {
     "@babel/core": "^7.12.16",

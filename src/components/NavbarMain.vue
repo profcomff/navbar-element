@@ -22,27 +22,25 @@
 </template>
 
 <script>
-import * as singleSpa from "single-spa";
 import NavbarMobile from "./NavbarMobile.vue";
 import NavbarDesktop from "./NavbarDesktop.vue";
 
 export default {
   components: { NavbarMobile, NavbarDesktop },
-  name: "navbar-component",
+  name: "navbar-main",
   data() {
     return {
       buttons: [],
-      active: -1,
+      active: 0,
     };
   },
   props: {
     mobile: Boolean,
   },
   watch: {
-    active: function () {
-      let button = this.buttons[this.active];
-      this.$emit("route", button.path);
-      singleSpa.navigateToUrl(button.path);
+    active: function (newValue, oldValue) {
+      this.$emit("navigate-url", this.buttons[newValue].path, this.buttons[oldValue].path);
+      this.$router.push(this.buttons[newValue].path);
     },
   },
   async beforeMount() {
@@ -82,6 +80,7 @@ export default {
         }
       });
     }
+    console.log("Buttons: ",this.buttons)
   },
 };
 </script>
