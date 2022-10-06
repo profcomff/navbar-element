@@ -63,34 +63,12 @@ export default {
       showCalendar: false,
       showOptions: false,
       pageId: 0,
+      dateWatcher: null,
     };
-  },
-  watch: {
-    date: function (newDate, oldDate) {
-      if (!newDate) this.date = oldDate;
-      document.dispatchEvent(new CustomEvent('change-date', { detail: this.date }));
-      try {
-        fetch(`${process.env.VUE_APP_API_MARKETING}/action`, {
-          method: "POST",
-          cache: "no-cache",
-          redirect: "follow",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            user_id:
-              localStorage.getItem("marketing-id"),
-              action: "viewed timetable on new date",
-              path_from: '/timetable',
-              path_to: '/timetable',
-          }),
-        });
-      } catch {
-        //Failed, skips
-      }
-    },
   },
   methods: {
     formatDate(date) {
-      if (this.date){
+      if (this.date) {
         var options = {
           month: "long",
           day: "numeric",
@@ -105,9 +83,36 @@ export default {
       this.$router.push("/timetable/init");
     },
   },
+
+  watch: {
+      date(newDate, oldDate) {
+        if (!newDate) this.date = oldDate;
+          document.dispatchEvent(new CustomEvent('change-date', { detail: { date: this.date } }));
+        try {
+          fetch(`${process.env.VUE_APP_API_MARKETING}/action`, {
+            method: "POST",
+            cache: "no-cache",
+            redirect: "follow",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+              user_id:
+                localStorage.getItem("marketing-id"),
+              action: "viewed timetable on new date",
+              path_from: '/timetable',
+              path_to: '/timetable',
+            }),
+          });
+        } catch {
+          //Failed, skips
+        }
+      },
+    },
   beforeMount() {
     document.addEventListener("change-page", (e) => { this.pageId = e.detail })
-  }
+    document.addEventListener('change-main-date', (e) => {
+      this.date = e.detail.date;
+    });
+  },
 };
 </script>
 
