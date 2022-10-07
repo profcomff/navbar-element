@@ -83,7 +83,6 @@ export default {
       this.$router.push("/timetable/init");
     },
     syncDate(){
-      console.log(1);
       document.dispatchEvent(new CustomEvent('change-date', { detail: { date: this.date } }))
     }
   },
@@ -113,6 +112,7 @@ export default {
     },
   beforeMount() {
     document.addEventListener("change-page", (e) => { this.pageId = e.detail })
+    document.addEventListener('sync-date', this.syncDate)
     document.addEventListener('change-main-date', (e) => {
       this.date = e.detail.date;
     });
