@@ -1,24 +1,14 @@
 <template>
-  <navbar-mobile
-    :buttons="buttons"
-    :active="active"
-    @navigate="
-      (i) => {
-        active = i;
-      }
-    "
-    v-if="mobile"
-  />
-  <navbar-desktop
-    :buttons="buttons"
-    :active="active"
-    @navigate="
-      (i) => {
-        active = i;
-      }
-    "
-    v-else
-  />
+  <navbar-mobile :buttons="buttons" :active="active" @navigate="
+    (i) => {
+      active = i;
+    }
+  " v-if="mobile" />
+  <navbar-desktop :buttons="buttons" :active="active" @navigate="
+    (i) => {
+      active = i;
+    }
+  " v-else />
 </template>
 
 <script>
@@ -43,6 +33,23 @@ export default {
       this.$router.push(this.buttons[newValue].path);
     },
   },
+  methods: {
+    checkButtonState() {
+      if (
+        (window.location.pathname === "") |
+        (window.location.pathname === "/")
+      ) {
+        this.active = 1;
+      } else {
+        this.buttons.forEach((element, index) => {
+          if (this.$route.path.startsWith(element.path)) {
+            this.active = index;
+            return;
+          }
+        });
+      }
+    }
+  },
   async beforeMount() {
     try {
       // Пытаемся быстро загрузить из кэша
@@ -65,25 +72,14 @@ export default {
     } finally {
       localStorage.setItem("navbar-buttons", JSON.stringify(this.buttons));
     }
-
+    this.checkButtonState()
     // Выбираем какая кнопка сейчас активная
-    if (
-      (window.location.pathname === "") |
-      (window.location.pathname === "/")
-    ) {
-      this.active = 1;
-    } else {
-      this.buttons.forEach((element, index) => {
-        if (window.location.pathname.startsWith(element.path)) {
-          this.active = index;
-          return;
-        }
-      });
-    }
-    console.log("Buttons: ",this.buttons)
+    document.addEventListener("change-page", this.checkButtonState)
+    console.log("Buttons: ", this.buttons)
   },
 };
 </script>
 
 <style>
+
 </style>

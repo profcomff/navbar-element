@@ -35,6 +35,7 @@ const router = createRouter({
 console.log(router.options.routes)
 
 router.beforeEach((to, from, next) => {
+  console.log(to)
   if (to.meta.requiresGroup && !localStorage.getItem('timetable-group-id') && localStorage.getItem('timetable-group-id') != "-1")
     next({ name: 'init' });
   else next();
