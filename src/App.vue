@@ -10,8 +10,9 @@
 
 <script>
 import NavbarMain from "./components/NavbarMain.vue";
-import NavbarTop from "./components/NavbarTop.vue"; export
-default {
+import NavbarTop from "./components/NavbarTop.vue";
+import swipe from '@/events/swipe';
+export default {
   components: { NavbarTop, NavbarMain },
   data() { return { show_appbar: false, }; },
   methods: {
@@ -37,5 +38,8 @@ default {
         //Failed, skips
       }
     },
-  }, beforeMount() { },
+  }, beforeMount() {
+      // вызов функции swipe с предварительными настройками
+      swipe(document, { maxTime: 2000, minTime: 100, maxDist: 300, minDist: 60 });
+  },
 }; </script>

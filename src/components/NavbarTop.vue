@@ -59,7 +59,7 @@ export default {
   },
   data() {
     return {
-      date: new Date,
+      date: new Date(),
       showCalendar: false,
       showOptions: false,
       pageId: 0,
@@ -82,12 +82,16 @@ export default {
       localStorage.removeItem("timetable-group-id");
       this.$router.push("/timetable/init");
     },
+    syncDate(){
+      console.log(1);
+      document.dispatchEvent(new CustomEvent('change-date', { detail: { date: this.date } }))
+    }
   },
 
   watch: {
       date(newDate, oldDate) {
         if (!newDate) this.date = oldDate;
-          document.dispatchEvent(new CustomEvent('change-date', { detail: { date: this.date } }));
+          this.syncDate();
         try {
           fetch(`${process.env.VUE_APP_API_MARKETING}/action`, {
             method: "POST",
