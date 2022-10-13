@@ -80,6 +80,7 @@ export default {
       this.showCalendar = false;
       this.showOptions = false;
       localStorage.removeItem("timetable-group-id");
+      localStorage.removeItem("timetable-cache");
       this.$router.push("/timetable/init");
     },
     syncDate(){
