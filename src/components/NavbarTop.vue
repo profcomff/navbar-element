@@ -111,6 +111,7 @@ export default {
       },
     },
   beforeMount() {
+    document.getElementsByTagName("body")[0].style.marginTop = "56px";
     document.addEventListener("change-page", (e) => { this.pageId = e.detail })
     document.addEventListener('sync-date', this.syncDate)
     document.addEventListener('change-main-date', (e) => {
