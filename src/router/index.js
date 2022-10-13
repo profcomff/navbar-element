@@ -15,6 +15,34 @@ const routes = [
     component: App
   },
   {
+    path: '/timetable/event/:eventId',
+    component: App
+  },
+  {
+    path: '/timetable/room/:roomId',
+    component: App
+  },
+  {
+    path: '/timetable/lecturer/:lecturerId',
+    component: App
+  },
+  {
+    path: '/timetable/admin',
+    component: App
+  },
+  {
+    path: '/timetable/admin/lecturer',
+    component: App
+  },
+  {
+    path: '/timetable/admin/room',
+    component: App
+  },
+  {
+    path: '/timetable/admin/event',
+    component: App
+  },
+  {
     path: '/apps',
     name: 'services',
     component: App
