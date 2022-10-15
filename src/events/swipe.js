@@ -4,7 +4,7 @@ export default function swipe(el, sett) {
     var settings = Object.assign({}, {
         minDist: 60,  // минимальная дистанция, которую должен пройти указатель, чтобы жест считался как свайп (px)
         maxDist: 120, // максимальная дистанция, не превышая которую может пройти указатель, чтобы жест считался как свайп (px)
-        maxTime: 700, // максимальное время, за которое должен быть совершен свайп (ms)
+        maxTime: 300, // максимальное время, за которое должен быть совершен свайп (ms)
         minTime: 50   // минимальное время, за которое должен быть совершен свайп (ms)
     }, sett);
 
@@ -15,7 +15,7 @@ export default function swipe(el, sett) {
         settings.minTime = 50;
     }
 
-    var dir,                // направление свайпа (horizontal, vertical)
+    var dir,                  // направление свайпа (horizontal, vertical)
         swipeType,            // тип свайпа (up, down, left, right)
         dist,                 // дистанция, пройденная указателем
         isMouse = false,      // поддержка мыши (не используется для тач-событий)
