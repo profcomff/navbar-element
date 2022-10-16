@@ -9,7 +9,10 @@
       >
         <div class="toggler-text">
           <span class="dateInfo">{{ this.formatDate(this.date) }}</span>
-          <span class="groupInfo" v-if="options.groupInfo.number">
+          <span
+            class="groupInfo"
+            v-if="options.groupInfo && options.groupInfo.number"
+          >
             {{ options.groupInfo.number }} группа
           </span>
         </div>
@@ -112,6 +115,7 @@ export default {
     document.addEventListener("change-main-date", (e) => {
       this.date = e.detail.date;
     });
+    this.syncDate();
   },
 };
 </script>
