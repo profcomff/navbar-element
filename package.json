@@ -5,8 +5,7 @@
   "scripts": {
     "start": "vue-cli-service serve --port 9001",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "serve:standalone": "vue-cli-service serve --mode standalone"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "click-outside-vue3": "4.0.1",
