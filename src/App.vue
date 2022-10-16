@@ -54,7 +54,7 @@ export default {
     },
   }, beforeMount() {
       // вызов функции swipe с предварительными настройками
-      swipe(document, { maxTime: 800, minTime: 200, maxDist: 150, minDist: 50 });
+      //swipe(document, { maxTime: 800, minTime: 200, maxDist: 150, minDist: 50 });
   },
 };
 </script>
