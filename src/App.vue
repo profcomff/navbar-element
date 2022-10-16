@@ -15,7 +15,7 @@
 <script>
 import NavbarMain from "./components/NavbarMain.vue";
 import NavbarTop from "./components/NavbarTop.vue";
-import swipe from "@/events/swipe";
+//import swipe from "@/events/swipe";
 export default {
   components: { NavbarTop, NavbarMain },
   data() {
