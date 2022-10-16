@@ -1,7 +1,19 @@
 <template>
-  <navbar-top-plain v-bind:options="options" v-if="layoutName == 'plain'" />
-  <navbar-top-back v-bind:options="options" v-else-if="layoutName == 'back'" />
-  <navbar-top-calendar v-bind:options="options" v-else-if="layoutName == 'calendar'" />
+  <navbar-top-plain
+    class="noselect"
+    v-bind:options="options"
+    v-if="layoutName == 'plain'"
+  />
+  <navbar-top-back
+    class="noselect"
+    v-bind:options="options"
+    v-else-if="layoutName == 'back'"
+  />
+  <navbar-top-calendar
+    class="noselect"
+    v-bind:options="options"
+    v-else-if="layoutName == 'calendar'"
+  />
 </template>
 
 <script>
@@ -28,3 +40,15 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none;   /* Non-prefixed version, currently
+  supported by Chrome, Edge, Opera and Firefox */
+}
+</style>

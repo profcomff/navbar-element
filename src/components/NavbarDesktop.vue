@@ -23,7 +23,7 @@
           :tabindex="i"
           @click="$emit('navigate', i)"
           aria-current="page"
-          class="nav-link"
+          class="nav-link noselect"
         >
           <span class="bi me-2 material-symbols-sharp" width="16" height="16">
             {{ b.icon }}
@@ -42,16 +42,26 @@ export default {
   async beforeMount() {
     document.getElementsByTagName("body")[0].style.marginLeft = "340px";
   },
-  computed:{
-    logoItem(){
+  computed: {
+    logoItem() {
       return `${process.env.VUE_APP_CDN}/app/logo/logo_ff.svg`;
-    }
-  }
+    },
+  },
 };
-
 </script>
 
 <style scoped>
+.noselect {
+  -webkit-touch-callout: none; /* iOS Safari */
+  -webkit-user-select: none; /* Safari */
+  -khtml-user-select: none; /* Konqueror HTML */
+  -moz-user-select: none; /* Old versions of Firefox */
+  -ms-user-select: none; /* Internet Explorer/Edge */
+  user-select: none; /* Non-prefixed version, currently
+                                  supported by Chrome, Edge, Opera and Firefox */
+  cursor: pointer;
+}
+
 .sidebar {
   width: 340px;
   position: fixed;
@@ -66,18 +76,19 @@ export default {
   width: 60%;
 }
 
-/*! CSS Used from: https://getbootstrap.com/docs/5.0/examples/sidebars/sidebars.css */
 .bi {
   vertical-align: -0.125em;
   pointer-events: none;
   fill: currentColor;
 }
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+.nav-pills .nav-link.active,
+.nav-pills .show > .nav-link {
   background-color: var(--bs-primary);
   color: var(--bs-on-primary);
 }
 
-.nav-link, .nav-link:hover {
+.nav-link,
+.nav-link:hover {
   color: var(--bs-primary);
 }
 
