@@ -8,8 +8,10 @@
         @click="showCalendar = !showCalendar"
       >
         <div class="toggler-text">
-          <span>{{ this.formatDate(this.date) }}</span>
-          <!-- <span>204 группа</span> -->
+          <span class="dateInfo">{{ this.formatDate(this.date) }}</span>
+          <span class="groupInfo" v-if="options.groupInfo.number">
+            {{ options.groupInfo.number }} группа
+          </span>
         </div>
         <span class="material-symbols-sharp expander"> expand_more </span>
       </button>
@@ -156,11 +158,13 @@ header {
   margin-right: auto;
   display: flex;
   flex-direction: row;
+  align-items: center;
 }
 
 .toggler-text {
   display: flex;
   flex-flow: column nowrap;
+  align-items: flex-start;
 }
 
 .material-symbols-sharp {
@@ -168,9 +172,23 @@ header {
 }
 
 .expander {
+  margin-left: 8px;
   transition: all 0.2s ease-in;
 }
 .opened .expander {
   transform: rotate(180deg);
+}
+
+.dateInfo {
+  font-weight: bold;
+  font-size: 18px;
+  padding: 0;
+  margin: 0;
+}
+.groupInfo {
+  font-size: 12px;
+  padding: 0;
+  margin: 0;
+  margin-top: -5px;
 }
 </style>
