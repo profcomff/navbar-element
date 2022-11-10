@@ -9,11 +9,13 @@
     v-bind:options="options"
     v-else-if="layoutName == 'back'"
   />
-  <navbar-top-calendar
-    class="noselect"
-    v-bind:options="options"
-    v-else-if="layoutName == 'calendar'"
-  />
+  <keep-alive>
+    <navbar-top-calendar
+      class="noselect"
+      v-bind:options="options"
+      v-if="layoutName == 'calendar'"
+    />
+  </keep-alive>
 </template>
 
 <script>
