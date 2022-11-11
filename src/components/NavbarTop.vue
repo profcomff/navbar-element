@@ -1,17 +1,17 @@
 <template>
   <navbar-top-plain
-    class="noselect"
+    class="noselect topnavbar"
     v-bind:options="options"
     v-if="layoutName == 'plain'"
   />
   <navbar-top-back
-    class="noselect"
+    class="noselect topnavbar"
     v-bind:options="options"
     v-else-if="layoutName == 'back'"
   />
   <keep-alive>
     <navbar-top-calendar
-      class="noselect"
+      class="noselect topnavbar"
       v-bind:options="options"
       v-if="layoutName == 'calendar'"
     />
@@ -44,6 +44,9 @@ export default {
 </script>
 
 <style scoped>
+.topnavbar {
+  z-index: 100;
+}
 .noselect {
   -webkit-touch-callout: none; /* iOS Safari */
   -webkit-user-select: none; /* Safari */
