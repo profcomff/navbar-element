@@ -20,7 +20,9 @@
       </button>
       <div v-if="options.disabled" class="date">{{ options.text }}</div>
       <div v-if="showCalendar" class="date-nav">
-        <DatePicker class="calendar" v-model="date" />
+        <keep-alive>
+          <DatePicker class="calendar" v-model="date" />
+        </keep-alive>
       </div>
     </div>
     <options-button
