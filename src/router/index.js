@@ -48,6 +48,10 @@ const routes = [
     component: App
   },
   {
+    path: '/apps/browser',
+    component: App
+  },
+  {
     path: '/apps/:errorCode',
     name: 'errors',
     component: App
