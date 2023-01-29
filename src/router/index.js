@@ -9,62 +9,12 @@ const routes = [
     component: App,
     meta: { requiresGroup: true }
   },
-  {
-    path: '/timetable/init',
-    name: 'init',
-    component: App
-  },
-  {
-    path: '/timetable/event/:eventId',
-    component: App
-  },
-  {
-    path: '/timetable/room/:roomId',
-    component: App
-  },
-  {
-    path: '/timetable/lecturer/:lecturerId',
-    component: App
-  },
-  {
-    path: '/timetable/admin',
-    component: App
-  },
-  {
-    path: '/timetable/admin/lecturer',
-    component: App
-  },
-  {
-    path: '/timetable/admin/room',
-    component: App
-  },
-  {
-    path: '/timetable/admin/event',
-    component: App
-  },
-  {
-    path: '/apps',
-    name: 'services',
-    component: App
-  },
-  {
-    path: '/apps/browser',
-    component: App
-  },
-  {
-    path: '/apps/:errorCode',
-    name: 'errors',
-    component: App
-  },
-  { path: "/:pathMatch(.*)*", redirect: '/apps/404'}
 ];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
 });
-
-console.log(router.options.routes)
 
 router.beforeEach((to, from, next) => {
   console.log(to)
