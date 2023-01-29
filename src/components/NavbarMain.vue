@@ -14,6 +14,8 @@
 <script>
 import NavbarMobile from "./NavbarMobile.vue";
 import NavbarDesktop from "./NavbarDesktop.vue";
+import * as singleSpa from 'single-spa';
+
 
 export default {
   components: { NavbarMobile, NavbarDesktop },
@@ -30,7 +32,7 @@ export default {
   watch: {
     active: function (newValue, oldValue) {
       this.$emit("navigate-url", this.buttons[newValue].path, this.buttons[oldValue].path);
-      this.$router.push(this.buttons[newValue].path);
+      singleSpa.navigateToUrl(this.buttons[newValue].path);
     },
   },
   methods: {
@@ -42,7 +44,7 @@ export default {
         this.active = 1;
       } else {
         this.buttons.forEach((element, index) => {
-          if (this.$route.path.startsWith(element.path)) {
+          if (window.location.pathname.startsWith(element.path)) {
             this.active = index;
             return;
           }

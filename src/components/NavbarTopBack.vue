@@ -1,6 +1,6 @@
 <template>
   <header>
-    <options-button icon="arrow_back" @click="$router.go(-1)" />
+    <options-button icon="arrow_back" @click="back" />
     <div>{{ options.text }}</div>
     <dropdown-menu
       v-bind:menu="options.menu"
@@ -18,6 +18,9 @@ export default {
   props: {
     options: { type: Object, default: () => ({ text: "Твой физфак!" }) },
   },
+  methods: {
+    back() { window.history.back() }
+  }
 };
 </script>
 
