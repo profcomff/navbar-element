@@ -1,6 +1,6 @@
-import { h, createApp } from 'vue';
-import { SetupCalendar } from 'v-calendar';
 import singleSpaVue from 'single-spa-vue';
+import { SetupCalendar } from 'v-calendar';
+import { createApp, h } from 'vue';
 
 import App from './App.vue';
 
