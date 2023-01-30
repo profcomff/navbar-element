@@ -1,14 +1,6 @@
 <template>
-  <navbar-mobile :buttons="buttons" :active="active" @navigate="
-    (i) => {
-      active = i;
-    }
-  " v-if="mobile" />
-  <navbar-desktop :buttons="buttons" :active="active" @navigate="
-    (i) => {
-      active = i;
-    }
-  " v-else />
+  <navbar-mobile :buttons="buttons" :active="active" @navigate="navigate" v-if="mobile" />
+  <navbar-desktop :buttons="buttons" :active="active" @navigate="navigate" v-else />
 </template>
 
 <script>
@@ -20,22 +12,19 @@ import * as singleSpa from 'single-spa';
 export default {
   components: { NavbarMobile, NavbarDesktop },
   name: "navbar-main",
-  data() {
-    return {
-      buttons: [],
-      active: 0,
-    };
-  },
+  data: () => ({
+    buttons: [],
+    active: 0,
+  }),
   props: {
     mobile: Boolean,
   },
-  watch: {
-    active: function (newValue, oldValue) {
-      this.$emit("navigate-url", this.buttons[newValue].path, this.buttons[oldValue].path);
-      singleSpa.navigateToUrl(this.buttons[newValue].path);
-    },
-  },
   methods: {
+    navigate(newValue) {
+      this.$emit("navigate-url", this.buttons[newValue].path, this.buttons[this.active].path);
+      singleSpa.navigateToUrl(this.buttons[newValue].path);
+      this.active = newValue;
+    },
     checkButtonState() {
       if (
         (window.location.pathname === "") |
@@ -78,6 +67,7 @@ export default {
     // Выбираем какая кнопка сейчас активная
     document.addEventListener("change-page", this.checkButtonState)
     console.log("Buttons: ", this.buttons)
+    this.loaded = true;
   },
 };
 </script>
