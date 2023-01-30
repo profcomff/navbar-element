@@ -21,7 +21,7 @@
       <div v-if="options.disabled" class="date">{{ options.text }}</div>
       <div v-if="showCalendar" class="date-nav">
         <keep-alive>
-          <DatePicker class="calendar" v-model="date" />
+          <DatePicker class="calendar" v-model="date" is-required />
         </keep-alive>
       </div>
     </div>
