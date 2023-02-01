@@ -18,9 +18,16 @@ import NavbarTop from "./components/NavbarTop.vue";
 //import swipe from "@/events/swipe";
 export default {
   components: { NavbarTop, NavbarMain },
+
   data() {
     return { show_appbar: false };
+  }, 
+
+  beforeMount() {
+      // вызов функции swipe с предварительными настройками
+      //swipe(document, { maxTime: 800, minTime: 200, maxDist: 150, minDist: 50 });
   },
+
   methods: {
     isMobile() {
       if (
@@ -33,6 +40,7 @@ export default {
         return false;
       }
     },
+    
     async capture_navigation(from, to) {
       if (from === to) return;
       try {
@@ -52,9 +60,6 @@ export default {
         //Failed, skips
       }
     },
-  }, beforeMount() {
-      // вызов функции swipe с предварительными настройками
-      //swipe(document, { maxTime: 800, minTime: 200, maxDist: 150, minDist: 50 });
   },
 };
 </script>

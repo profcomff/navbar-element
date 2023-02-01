@@ -35,16 +35,16 @@ export default function swipe(el, sett) {
             return true;
         } else { return false; }
     }
-    var getSupportedEvents = function() {
+    var getSupportedEvents = function () {
         switch (isMobile()) {
             case false:
                 events = {
-                    type:   "pointer",
-                    start:  "PointerDown",
-                    move:   "PointerMove",
-                    end:    "PointerUp",
+                    type: "pointer",
+                    start: "PointerDown",
+                    move: "PointerMove",
+                    end: "PointerUp",
                     cancel: "PointerCancel",
-                    leave:  "PointerLeave"
+                    leave: "PointerLeave"
                 };
                 // добавление префиксов для IE10
                 var ie10 = (window.navigator.msPointerEnabled && Function('/*@cc_on return document.documentMode===10@*/')());
@@ -55,19 +55,19 @@ export default function swipe(el, sett) {
                 break;
             case true:
                 events = {
-                    type:   "touch",
-                    start:  "touchstart",
-                    move:   "touchmove",
-                    end:    "touchend",
+                    type: "touch",
+                    start: "touchstart",
+                    move: "touchmove",
+                    end: "touchend",
                     cancel: "touchcancel"
                 };
                 break;
             default:
                 events = {
-                    type:  "mouse",
+                    type: "mouse",
                     start: "mousedown",
-                    move:  "mousemove",
-                    end:   "mouseup",
+                    move: "mousemove",
+                    end: "mouseup",
                     leave: "mouseleave"
                 };
                 break;
@@ -76,11 +76,11 @@ export default function swipe(el, sett) {
     };
 
 
-    var eventsUnify = function(e) {
+    var eventsUnify = function (e) {
         return e.changedTouches ? e.changedTouches[0] : e;
     };
 
-    var checkStart = function(e) {
+    var checkStart = function (e) {
         var event = eventsUnify(e);
         if (support.touch && typeof e.touches !== "undefined" && e.touches.length !== 1) return; // игнорирование касания несколькими пальцами
         dir = "none";
@@ -92,7 +92,7 @@ export default function swipe(el, sett) {
         if (isMouse) isMouseDown = true; // поддержка мыши
     };
 
-    var checkMove = function(e) {
+    var checkMove = function (e) {
         if (isMouse && !isMouseDown) return; // выход из функции, если мышь перестала быть активна во время движения
         var event = eventsUnify(e);
         distX = event.pageX - startX;
@@ -101,7 +101,7 @@ export default function swipe(el, sett) {
         else dir = (distY < 0) ? "up" : "down";
     };
 
-    var checkEnd = function(e) {
+    var checkEnd = function (e) {
         if (isMouse && !isMouseDown) { // выход из функции и сброс проверки нажатия мыши
             isMouseDown = false;
             return;
@@ -124,7 +124,7 @@ export default function swipe(el, sett) {
                 cancelable: true,
                 detail: {
                     full: e, // полное событие Event
-                    dir:  swipeType, // направление свайпа
+                    dir: swipeType, // направление свайпа
                     dist: dist, // дистанция свайпа
                     time: time // время, потраченное на свайп
                 }
@@ -144,7 +144,7 @@ export default function swipe(el, sett) {
     el.addEventListener(events.start, checkStart);
     el.addEventListener(events.move, checkMove);
     el.addEventListener(events.end, checkEnd);
-    if(support.pointer && support.touch) {
+    if (support.pointer && support.touch) {
         el.addEventListener('lostpointercapture', checkEnd);
     }
 }
