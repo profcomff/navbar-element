@@ -1,7 +1,7 @@
 <template>
     <header>
         <div>{{ options.text }}</div>
-        <dropdown-menu
+        <DropdownMenu
             v-if="options.menu && options.menu.length > 0"
             :menu="options.menu"
         />

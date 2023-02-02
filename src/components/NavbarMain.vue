@@ -1,11 +1,11 @@
 <template>
-    <navbar-mobile
+    <NavbarMobile
         v-if="mobile"
         :buttons="buttons"
         :active="active"
         @navigate="navigate"
     />
-    <navbar-desktop
+    <NavbarDesktop
         v-else
         :buttons="buttons"
         :active="active"

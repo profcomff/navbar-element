@@ -1,11 +1,11 @@
 <template>
     <header>
-        <options-button
+        <OptionsButton
             icon="arrow_back"
             @click="back"
         />
         <div>{{ options.text }}</div>
-        <dropdown-menu
+        <DropdownMenu
             v-if="options.menu && options.menu.length > 0"
             :menu="options.menu"
         />

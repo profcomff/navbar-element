@@ -1,7 +1,7 @@
 <template>
     <div>
-        <navbar-top />
-        <navbar-main
+        <NavbarTop />
+        <NavbarMain
             :mobile="isMobile()"
             @navigate-url="
                 (newPath, oldPath) => {

@@ -1,5 +1,5 @@
 <template>
-    <options-button
+    <OptionsButton
         icon="more_vert"
         :disabled="disabled"
         @click="showOptions = !showOptions"

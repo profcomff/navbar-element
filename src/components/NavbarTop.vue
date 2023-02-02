@@ -1,21 +1,21 @@
 <template>
-    <navbar-top-plain
+    <NavbarTopPlain
         v-if="layoutName == 'plain'"
         class="noselect topnavbar"
         :options="options"
     />
-    <navbar-top-back
+    <NavbarTopBack
         v-else-if="layoutName == 'back'"
         class="noselect topnavbar"
         :options="options"
     />
-    <keep-alive>
-        <navbar-top-calendar
+    <KeepAlive>
+        <NavbarTopCalendar
             v-if="layoutName == 'calendar'"
             class="noselect topnavbar"
             :options="options"
         />
-    </keep-alive>
+    </KeepAlive>
 </template>
 
 <script>

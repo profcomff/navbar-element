@@ -33,21 +33,21 @@
                 v-if="showCalendar"
                 class="date-nav"
             >
-                <keep-alive>
+                <KeepAlive>
                     <DatePicker
                         v-model="date"
                         class="calendar"
                         is-required
                     />
-                </keep-alive>
+                </KeepAlive>
             </div>
         </div>
-        <options-button
+        <OptionsButton
             icon="today"
             :disabled="options.disabled"
             @click="date = new Date()"
         />
-        <dropdown-menu
+        <DropdownMenu
             :menu="options.menu"
             :disabled="options.disabled"
         />

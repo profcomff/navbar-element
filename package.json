@@ -5,8 +5,8 @@
     "scripts": {
         "start": "vue-cli-service serve --port 9001",
         "build": "vue-cli-service build",
-        "lint": "eslint .",
-        "lint:fix": "eslint --fix .",
+        "lint": "eslint --ext .vue --ext .js .",
+        "lint:fix": "eslint --ext .vue --ext .js --fix .",
         "format": "prettier --check .",
         "format:write": "prettier --write ."
     },
