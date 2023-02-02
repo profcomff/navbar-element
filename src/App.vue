@@ -1,6 +1,5 @@
 <template>
     <div>
-        <NavbarTop />
         <NavbarMain
             :mobile="isMobile()"
             @navigate-url="
@@ -14,10 +13,9 @@
 
 <script>
 import NavbarMain from './components/NavbarMain.vue';
-import NavbarTop from './components/NavbarTop.vue';
 //import swipe from "@/events/swipe";
 export default {
-    components: { NavbarTop, NavbarMain },
+    components: { NavbarMain },
 
     data() {
         return { show_appbar: false };
