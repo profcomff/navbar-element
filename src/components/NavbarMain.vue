@@ -5,22 +5,15 @@
         :active="active"
         @navigate="navigate"
     />
-    <NavbarDesktop
-        v-else
-        :buttons="buttons"
-        :active="active"
-        @navigate="navigate"
-    />
 </template>
 
 <script>
 import NavbarMobile from './NavbarMobile.vue';
-import NavbarDesktop from './NavbarDesktop.vue';
 import * as singleSpa from 'single-spa';
 
 export default {
     name: 'NavbarMain',
-    components: { NavbarMobile, NavbarDesktop },
+    components: { NavbarMobile },
     props: {
         mobile: Boolean,
     },

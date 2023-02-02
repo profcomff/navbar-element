@@ -298,14 +298,10 @@ export default {
 }
 .navigation-bar {
     background-color: var(--bs-primary);
-    bottom: 0;
     box-shadow: 0 2px 4px -1px rgba(0, 0, 0, 0.2),
         0 4px 5px 0 rgba(0, 0, 0, 0.14), 0 1px 10px 0 rgba(0, 0, 0, 0.12);
     height: 48px;
-    left: 0;
-    position: fixed;
-    right: 0;
-    z-index: 4;
+    widows: 100%;
 }
 .navigation-bar.navigation-bar--stacked {
     height: 56px;
