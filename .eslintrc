@@ -25,6 +25,9 @@
             {
                 "registeredComponentsOnly": false
             }
-        ]
+        ],
+        "object-shorthand": "warn",
+        "vue/html-self-closing": "warn",
+        "no-console": "warn"
     }
 }

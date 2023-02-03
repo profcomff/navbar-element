@@ -168,8 +168,8 @@ export default function swipe(el, sett) {
                 detail: {
                     full: e, // полное событие Event
                     dir: swipeType, // направление свайпа
-                    dist: dist, // дистанция свайпа
-                    time: time, // время, потраченное на свайп
+                    dist, // дистанция свайпа
+                    time, // время, потраченное на свайп
                 },
             });
             el.dispatchEvent(swipeEvent);
