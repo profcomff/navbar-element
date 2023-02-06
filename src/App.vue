@@ -1,50 +1,59 @@
 <template>
-    <div>
-        <NavbarMain
-            :mobile="isMobile()"
-            @navigate-url="
-                (newPath, oldPath) => {
-                    captureNavigation(oldPath, newPath);
-                }
-            "
+    <div class="navbar-wrapper">
+        <NavbarItem
+            v-for="(item, i) in items"
+            :key="item.title"
+            v-bind="item"
+            :active="active === i"
+            @click="() => navigate(i)"
         />
     </div>
 </template>
-
 <script>
-import NavbarMain from './components/NavbarMain.vue';
-import { Breakpoints } from './constants';
-import { windowWidthMixin, captureNavigationMixin } from './mixins';
+import NavbarItem from './components/NavbarItem.vue';
+import * as singleSpa from 'single-spa';
 
+const items = [
+    { title: 'Расписание', icon: 'calendar_month', path: '/timetable' },
+    { title: 'Сервисы', icon: 'apps', path: '/apps' },
+];
 export default {
-    components: { NavbarMain },
-    mixins: [windowWidthMixin, captureNavigationMixin],
-
+    components: { NavbarItem },
     data() {
-        return { show_appbar: false };
+        return {
+            items,
+            active: items.reduce(
+                (acc, cur, i) =>
+                    window.location.pathname.startsWith(cur.path) ? i : acc,
+                0,
+            ),
+        };
     },
-
     methods: {
-        isMobile() {
-            return this.windowWidth < Breakpoints.SM;
+        navigate(i) {
+            this.active = i;
+            document.dispatchEvent(
+                new CustomEvent('change-page', {
+                    detail: {
+                        path: items[i].path,
+                    },
+                }),
+            );
+            singleSpa.navigateToUrl(items[i].path);
         },
     },
 };
 </script>
-
 <style>
-span.ripple {
-    position: absolute;
-    border-radius: 50%;
-    transform: scale(0);
-    animation: ripple 600ms linear;
-    background-color: rgba(255, 255, 255, 0.7);
+.navbar-wrapper {
+    display: flex;
+    background: var(--bs-primary);
+    height: 56px;
 }
 
-@keyframes ripple {
-    to {
-        transform: scale(4);
-        opacity: 0;
+@media screen and (min-width: 576px) {
+    .navbar-wrapper {
+        display: none;
     }
 }
 </style>
