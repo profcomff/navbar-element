@@ -9,7 +9,7 @@
         >
             {{ icon }}
         </i>
-        <span class="navbar-title">
+        <span class="noselect navbar-title">
             {{ title }}
         </span>
     </button>
