@@ -1,6 +1,6 @@
 <template>
     <button
-        class="navbar-item"
+        class="noselect navbar-item"
         :class="{ active }"
     >
         <i
@@ -9,9 +9,7 @@
         >
             {{ icon }}
         </i>
-        <span class="noselect navbar-title">
-            {{ title }}
-        </span>
+        {{ title }}
     </button>
 </template>
 <script>
