@@ -1,7 +1,7 @@
 <template>
     <div class="navbar-wrapper">
         <NavbarItem
-            v-for="(item, i) in items"
+            v-for="(item, i) in navItems"
             :key="item.title"
             v-bind="item"
             :active="pathname.startsWith(item.path)"
@@ -12,22 +12,19 @@
 <script>
 import NavbarItem from './components/NavbarItem.vue';
 import * as singleSpa from 'single-spa';
+import { navItems } from 'profcomff-ui-common/constants';
 
-const items = [
-    { title: 'Расписание', icon: 'calendar_month', path: '/timetable' },
-    { title: 'Сервисы', icon: 'apps', path: '/apps' },
-];
 export default {
     components: { NavbarItem },
     data() {
         return {
-            items,
+            navItems,
             pathname: window.location.pathname,
         };
     },
     methods: {
         navigate(i) {
-            singleSpa.navigateToUrl(items[i].path);
+            singleSpa.navigateToUrl(navItems[i].path);
         },
         beforeRoutingEventHandler() {
             this.pathname = window.location.pathname;
