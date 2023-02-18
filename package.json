@@ -13,7 +13,7 @@
     "dependencies": {
         "click-outside-vue3": "4.0.1",
         "core-js": "^3.6.5",
-        "profcomff-ui-common": "^0.0.3",
+        "profcomff-ui-common": "^0.0.4",
         "single-spa-vue": "^2.1.0",
         "v-calendar": "^3.0.0-alpha.8",
         "vue": "^3.0.0"
