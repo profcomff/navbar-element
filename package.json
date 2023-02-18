@@ -16,7 +16,7 @@
         "single-spa-vue": "^2.1.0",
         "v-calendar": "^3.0.0-alpha.8",
         "vue": "^3.0.0",
-        "profcomff-ui-common": "file:../../packages/common"
+        "profcomff-ui-common": "^0.0.1"
     },
     "devDependencies": {
         "@babel/core": "^7.12.16",
