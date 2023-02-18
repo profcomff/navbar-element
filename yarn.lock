@@ -4907,10 +4907,10 @@ process-nextick-args@~2.0.0:
   resolved "https://registry.yarnpkg.com/process-nextick-args/-/process-nextick-args-2.0.1.tgz#7820d9b16120cc55ca9ae7792680ae7dba6d7fe2"
   integrity sha512-3ouUOpQhtgrbOa17J7+uxOTpITYWaGP7/AhoR3+A+/1e9skrzelGi/dXzEYyvbxubEF6Wn2ypscTKiKJFFn1ag==
 
-profcomff-ui-common@^0.0.2:
-  version "0.0.2"
-  resolved "https://registry.yarnpkg.com/profcomff-ui-common/-/profcomff-ui-common-0.0.2.tgz#9ab8f8d607c1b129c5e59092949d62ca126a6ae6"
-  integrity sha512-T7FQLYjILQnMkKIqpIVJgeqnze15rsuCi2ptBwBm+J2LDcibRv2xKu7cTsP3yqWfBgHJ025/AISExl0VRQKz8A==
+profcomff-ui-common@^0.0.3:
+  version "0.0.3"
+  resolved "https://registry.yarnpkg.com/profcomff-ui-common/-/profcomff-ui-common-0.0.3.tgz#ac3c4a999db969d2a852ea536bc3c78ff741e08d"
+  integrity sha512-sSo6dD5eA9Ixkovtv98Sy5G2W72BhsE/SNwTilYDy+wVjsa1AMW5Gl7N4+4tiiSVFs8aewXh2ww+M+O5n2newA==
 
 progress-webpack-plugin@^1.0.12:
   version "1.0.16"

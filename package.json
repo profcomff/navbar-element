@@ -5,15 +5,15 @@
     "scripts": {
         "start": "vue-cli-service serve --port 9001",
         "build": "vue-cli-service build",
-        "lint": "eslint --ext .vue --ext .js .",
-        "lint:fix": "eslint --ext .vue --ext .js --fix .",
+        "lint": "eslint --ext .vue,.js,.ts .",
+        "lint:fix": "eslint --ext .vue,.js,.ts --fix .",
         "format": "prettier --check .",
         "format:write": "prettier --write ."
     },
     "dependencies": {
         "click-outside-vue3": "4.0.1",
         "core-js": "^3.6.5",
-        "profcomff-ui-common": "^0.0.2",
+        "profcomff-ui-common": "^0.0.3",
         "single-spa-vue": "^2.1.0",
         "v-calendar": "^3.0.0-alpha.8",
         "vue": "^3.0.0"
