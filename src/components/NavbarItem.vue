@@ -3,19 +3,20 @@
         class="navbar-item"
         :class="{ active }"
     >
-        <i
-            class="material-symbols-sharp tab--icon"
+        <MaterialIcon
+            :icon="icon"
             aria-hidden="true"
-        >
-            {{ icon }}
-        </i>
+        />
         <span class="noselect navbar-title">
             {{ title }}
         </span>
     </button>
 </template>
 <script>
+import { MaterialIcon } from 'profcomff-ui-common/components';
+
 export default {
+    components: { MaterialIcon },
     props: {
         title: {
             type: String,
