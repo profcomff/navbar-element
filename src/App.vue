@@ -12,7 +12,7 @@
 <script>
 import NavbarItem from './components/NavbarItem.vue';
 import * as singleSpa from 'single-spa';
-import { navItems } from 'profcomff-ui-common/constants';
+import { navItems } from '@profcomff/ui-common/constants';
 
 export default {
     components: { NavbarItem },
