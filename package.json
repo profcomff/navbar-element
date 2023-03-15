@@ -32,7 +32,7 @@
         "sass": "^1.54.5",
         "sass-loader": "^13.0.2",
         "vue-cli-plugin-single-spa": "~3.3.0",
-        "webpack": "^5.74.0"
+        "webpack": "^5.76.0"
     },
     "browserslist": [
         "> 1%",
